@@ -43,7 +43,8 @@ async function request(req) {
 
 
 app.get('/api', (req, res) => {
-	res.send("hi")
+	console.log('req')
+	res.send(JSON.stringify({response: hi}))
 	})
 
 
