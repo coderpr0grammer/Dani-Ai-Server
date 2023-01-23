@@ -42,7 +42,7 @@ async function request(req) {
 
 
 app.get('/api', (req, res) => {
-	alert(req)
+	// alert(req)
 	res.send(req)
 	})
 
