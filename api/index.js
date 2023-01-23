@@ -49,7 +49,7 @@ app.get('/api', (req, res) => {
 	  temperature: 0.9,
 	  max_tokens: 512,
 	  });
-	res.send(completion.data.choices[0].text);
+	res.send('completion: '+completion.data.choices[0].text);
 	})
 
 
