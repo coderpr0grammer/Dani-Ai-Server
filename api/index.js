@@ -36,7 +36,6 @@ async function request(req) {
   prompt: req.prompt,
   temperature: 0.9,
   max_tokens: 512,
-  top_p: 1,
   });
   return { 'result': completion.data.choices[0].text };
 }
@@ -44,7 +43,7 @@ async function request(req) {
 
 app.get('/api', (req, res) => {
 	console.log(req)
-	res.send(JSON.stringify({response: hi}))
+	res.send("hi")
 	})
 
 
