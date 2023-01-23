@@ -43,7 +43,7 @@ async function request(req) {
 
 app.get('/api', (req, res) => {
 	// alert(req)
-	res.send(req)
+	res.send('id: ' + req.query.id);
 	})
 
 
