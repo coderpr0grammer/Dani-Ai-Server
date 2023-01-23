@@ -42,8 +42,8 @@ async function request(req) {
 
 
 app.get('/api', (req, res) => {
-	console.log(req)
-	res.send(JSON.stringify(req))
+	alert(req)
+	res.send(req)
 	})
 
 
