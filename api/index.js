@@ -18,38 +18,31 @@ const configuration = new Configuration({
 });
 const openai = new OpenAIApi(configuration);
 
-const dialogExample = [
-	{
-	  "speaker": "user",
-	  "text": "Hello, how are you?"
-	},
-	{
-	  "speaker": "bot",
-	  "text": "I am doing well, thank you. How can I help you today?"
-	}
-  ];
-
 async function request(req) {
 	// console.log(req)
   const completion = await openai.createCompletion({
     model: "text-davinci-003",
-  prompt: req.prompt,
-  temperature: 0.9,
-  max_tokens: 512,
+	  prompt: req.prompt,
+	  max_tokens: 256,
+	  temperature: 0.8,
   });
   return { 'result': completion.data.choices[0].text };
 }
 
+function generatePrompt(animal) {
+  const capitalizedAnimal =
+    animal[0].toUpperCase() + animal.slice(1).toLowerCase();
+  return `Suggest three names for an animal that is a superhero.
+Animal: Cat
+Names: Captain Sharpclaw, Agent Fluffball, The Incredible Feline
+Animal: Dog
+Names: Ruff the Protector, Wonder Canine, Sir Barks-a-Lot
+Animal: ${capitalizedAnimal}
+Names:`;
+}
 
 app.get('/api', (req, res) => {
-	// alert(req)
-	const completion = openai.createCompletion({
-		model: "text-davinci-003",
-	  prompt: req.query.prompt,
-	  temperature: 0.9,
-	  max_tokens: 512,
-	  });
-	res.send('completion: '+completion.data.choices[0].text);
+	res.send("hi")
 	})
 
 
