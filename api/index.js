@@ -13,33 +13,23 @@ app.use(bodyParser.json())
 const { Configuration, OpenAIApi } = require("openai");
 
 const configuration = new Configuration({
-	organization: "org-7EI8r48srsW3pVpQ7E7KPmy6",
-  apiKey: process.env.OPENAI_API_KEY,
+  	apiKey: process.env.OPENAI_API_KEY,
 });
 const openai = new OpenAIApi(configuration);
 
 async function request(req) {
 	// console.log(req)
-  const completion = await openai.createCompletion({
-    model: "text-davinci-003",
-	  prompt: req.prompt,
-	  max_tokens: 256,
-	  temperature: 0.8,
-  });
-  return { 'result': completion.data.choices[0].text };
+
+	const completion = await openai.createChatCompletion({
+		model: "gpt-3.5-turbo",
+		messages: req.prompt,
+		max_tokens: 50,
+		temperature: 0.4
+	
+	  });
+	  return { result: completion.data.choices[0].message.content };
 }
 
-function generatePrompt(animal) {
-  const capitalizedAnimal =
-    animal[0].toUpperCase() + animal.slice(1).toLowerCase();
-  return `Suggest three names for an animal that is a superhero.
-Animal: Cat
-Names: Captain Sharpclaw, Agent Fluffball, The Incredible Feline
-Animal: Dog
-Names: Ruff the Protector, Wonder Canine, Sir Barks-a-Lot
-Animal: ${capitalizedAnimal}
-Names:`;
-}
 
 app.get('/api', (req, res) => {
 	res.send("hi")
