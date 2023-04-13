@@ -20,6 +20,8 @@ const openai = new OpenAIApi(configuration);
 async function request(req) {
 	// console.log(req)
 
+	const systemPrompt = { 'role': 'system', 'content': 'You are a helpful and friendly assistant'}
+
 	const completion = await openai.createChatCompletion({
 		model: "gpt-3.5-turbo",
 		messages: req.prompt,
