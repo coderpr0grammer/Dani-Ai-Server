@@ -34,13 +34,14 @@ async function request(req) {
 
 
 app.get('/api', (req, res) => {
-	res.send("hi")
-	})
+	const exampleRequest = { prompt: [{ 'role': 'user', 'content': 'hello openai'}]}
+	request(exampleRequest).then((result) => {res.json(result)}).then((data) => {output = data; console.log(data)})
+})
 
 
 app.post('/api', (req, res) => {
-	console.log(req.body)
-	console.log(process.env.OPENAI_API_KEY)
+	// console.log(req.body)
+	// console.log(process.env.OPENAI_API_KEY)
 	// res.send("hi")
 	// let output = request().then((result) => console.log(result))
 	let output = null;
